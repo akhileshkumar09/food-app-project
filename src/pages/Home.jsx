@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import MenuItems from '../components/MenuItems';
 
 import { FaRegUserCircle } from "react-icons/fa";
+import OrderedItem from '../components/OrderedItem';
 
 
 
@@ -27,23 +28,38 @@ function Home() {
      
 
        {/*menu bar  */}
-      <div className={` ${showDetail ? "pr-28" : ""}`}>
-     <MenuItems/>
-     </div>
-     
+            <div className={` ${showDetail ? "pr-28" : ""}`}>
+          <MenuItems/>
+          </div>
+          
 
-       {/* user */}
-       {  (user && !showDetail) &&    
-      <span className='absolute top-2 right-1 ' onClick={handleClickOnUser}><FaRegUserCircle  className='sm:text-4xl text-3xl'/></span>
-      }
-      {/* user Detail */}
-      {showDetail &&
-      <div className=' absolute top-0 right-0 bg-white w-full sm:w-40 h-full z-0 overflow-y-auto' onClick={handleClickOnUser}>
-     
-      </div>
-      }
+            {/* user */}
+            {  (user && !showDetail) &&    
+            <span className='absolute top-2 right-1 ' onClick={handleClickOnUser}><FaRegUserCircle  className='sm:text-4xl text-3xl'/></span>
+            }
+            {/* user Detail */}
+            {showDetail &&
+            <div className=' absolute top-0 right-0 bg-white w-full sm:w-40 h-full z-0 overflow-y-auto scrollbar-none' onClick={handleClickOnUser}>
+            
+            <div className="space-y-1 p-2 pt-1 pb-24">
+              <span className="block w-6 h-6 text-black">X</span>
+              <span className="block w-8 h-8 bg-green-700 rounded-sm"></span>
+              <p className='pb-4'>User Details Here...</p>
+              <hr className='w-full'/>
 
-      </div>
+              <p>Order Detail</p>
+
+              <OrderedItem/>
+              <OrderedItem/>
+              <OrderedItem/>
+              <OrderedItem/>
+              <OrderedItem/>
+              
+            </div>
+            </div>
+            }
+
+            </div>
 
      
    
