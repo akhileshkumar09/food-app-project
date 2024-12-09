@@ -7,7 +7,7 @@ import OrderedItem from '../components/OrderedItem';
 
 
 function Home() {
-  const [user, setUser]= useState(true);
+  const [user, setUser]= useState(false);
   const [showDetail, setShowDetail] = useState(false);
 
   const handleClickOnUser = () => {
@@ -32,6 +32,10 @@ function Home() {
           <MenuItems/>
           </div>
           
+            {(!user) &&
+            (
+              <p className='absolute top-2 right-2  font-bold text-green-700 pointer'>Login</p>
+            )}
 
             {/* user */}
             {  (user && !showDetail) &&    
