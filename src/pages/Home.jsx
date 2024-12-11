@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import MenuItems from '../components/MenuItems';
 
+import MenuItems from '../components/MenuItems';
+import {useNavigate} from 'react-router-dom'
 import { FaRegUserCircle } from "react-icons/fa";
 import OrderedItem from '../components/OrderedItem';
 
@@ -9,9 +10,14 @@ import OrderedItem from '../components/OrderedItem';
 function Home() {
   const [user, setUser]= useState(false);
   const [showDetail, setShowDetail] = useState(false);
+  const navigate = useNavigate()
 
   const handleClickOnUser = () => {
     setShowDetail(!showDetail)
+  }
+
+  const navigateToLogin = () => {
+    navigate('/login')
   }
 
 
@@ -34,7 +40,7 @@ function Home() {
           
             {(!user) &&
             (
-              <p className='absolute top-2 right-2  font-bold text-green-700 pointer'>Login</p>
+              <button onClick={navigateToLogin} className='absolute top-2 right-2  font-bold text-green-700 pointer'>Login</button>
             )}
 
             {/* user */}
