@@ -4,18 +4,39 @@ import axios from 'axios';
 // Async thunk to fetch items from backend
 export const fetchItems = createAsyncThunk('items/fetch', async () => {
     const [drinks, starters, mains] = await Promise.all([
-        axios.get('/drink-item'),
-        axios.get('/starter-item'),
-        axios.get('/main-course-item'),
+        axios.get('http://localhost:5000/food-app/drinks'),
+        axios.get('http://localhost:5000/food-app/starter'),
+        axios.get('http://localhost:5000/food-app/main-course'),
     ]);
     return {
-        drinks: drinks.data,
-        starters: starters.data,
-        mains: mains.data,
+        drinks: drinks.data.map(item => ({
+            id: item._id,
+            category: item.CategoryName,
+            name: item.name,
+            img: item.img,
+            options: item.options,
+            description: item.description,
+        })),
+        starters: starters.data.map(item => ({
+            id: item._id,
+            category: item.CategoryName,
+            name: item.name,
+            img: item.img,
+            options: item.options,
+            description: item.description,
+        })),
+        mains: mains.data.map(item => ({
+            id: item._id,
+            category: item.CategoryName,
+            name: item.name,
+            img: item.img,
+            options: item.options,
+            description: item.description,
+        }))
     };
 });
 
-const itemsSlice = createSlice({
+const foodItemsSlice = createSlice({
     name: 'items',
     initialState: {
         drinks: [],
@@ -42,4 +63,4 @@ const itemsSlice = createSlice({
     },
 });
 
-export default itemsSlice.reducer;
+export default foodItemsSlice.reducer;
